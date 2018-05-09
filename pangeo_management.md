@@ -46,3 +46,8 @@ Select `action=>edit` on this console and adjust `min` and `desired`:
 https://us-west-2.console.aws.amazon.com/ec2/autoscaling/home?region=us-west-2#AutoScalingGroups:id=HdfLab-Kubernetes-K8sStack-SFLX4I06SHM9-K8sNodeGroup-VJ88FZ05UMEF;view=details
 
 ### Make sure worker-config.yaml doesn't exceed the CPU and memory of the kubernetes nodes
+
+### Kill pods
+```
+ kubectl get pods -n esip-dev | grep "^dask-rsignell" | cut -d' ' -f1 | xargs kubectl delete pods -n esip-dev
+```
