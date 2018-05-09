@@ -1,6 +1,7 @@
-# Management of pangeo.esipfed.org 
+# Pangeo Management 
+http://pangeo.esipfed.org on AWS
 
-## Set up Helm:
+### Set up Helm:
 ```
 
 mv kubeconfig ~/.kube/config   # this is secret stuff
@@ -14,7 +15,7 @@ helm repo update
 helm init --upgrade
 ```
 
-## Modify pangeo GCE config for AWS
+### Modify pangeo GCE config for AWS
 ```
 git clone https://github.com/rsignell-usgs/pangeo.git
 cd pangeo
@@ -34,11 +35,11 @@ cd ../../aws
 vi jupyter-config.yaml    # adjust whitelist, specify containers from esip
 ```
 
-## Upgrade JuptyerHub
+### Upgrade JuptyerHub
 helm upgrade esip-dev-pangeo pangeo/pangeo -f jupyter-config.yaml -f secret-config.yaml --version=v0.1.1-08b10bd
 
-## Scale cluster via AWS console:
+### Scale cluster via AWS console:
 Select "action=>edit" on this console and adjust "min" and "desired":
 https://us-west-2.console.aws.amazon.com/ec2/autoscaling/home?region=us-west-2#AutoScalingGroups:id=HdfLab-Kubernetes-K8sStack-SFLX4I06SHM9-K8sNodeGroup-VJ88FZ05UMEF;view=details
 
-## Make sure worker-config.yaml doesn't exceed the CPU and memory of the kubernetes nodes
+### Make sure worker-config.yaml doesn't exceed the CPU and memory of the kubernetes nodes
