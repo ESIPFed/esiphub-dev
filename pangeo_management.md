@@ -36,6 +36,7 @@ vi jupyter-config.yaml    # adjust whitelist, specify containers from esip
 ```
 
 ### Upgrade JuptyerHub
+check for recent Helm chart versions at https://pangeo-data.github.io/helm-chart/
 ```
 helm upgrade esip-dev-pangeo pangeo/pangeo -f jupyter-config.yaml -f secret-config.yaml --version=v0.1.1-08b10bd
 ```
