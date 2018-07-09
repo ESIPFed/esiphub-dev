@@ -40,13 +40,13 @@ check for recent Helm chart versions at https://pangeo-data.github.io/helm-chart
 ```
 helm upgrade esip-dev-pangeo pangeo/pangeo -f jupyter-config.yaml -f secret-config.yaml --version=v0.1.1-08b10bd
 ```
+login to http://pangeo.esipfed.org, stop the server, restart, then update the `custom-worker-template.yaml` to point to the correct docker image for the Dask workers, making sure not too exceed the CPU and memory of the kubernetes nodes.
 
 ### Scale cluster via AWS console:
 
 Select `action=>edit` on this console and adjust `min` and `desired`:
 https://us-west-2.console.aws.amazon.com/ec2/autoscaling/home?region=us-west-2#AutoScalingGroups:id=HdfLab-Kubernetes-K8sStack-SFLX4I06SHM9-K8sNodeGroup-VJ88FZ05UMEF;view=details
 
-### Make sure worker-config.yaml doesn't exceed the CPU and memory of the kubernetes nodes
 
 ### Kill pods
 ```
