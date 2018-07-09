@@ -35,12 +35,7 @@ cd ../../aws
 vi jupyter-config.yaml    # adjust whitelist, specify containers from esip
 ```
 
-### Upgrade JuptyerHub
-check for recent Helm chart versions at https://pangeo-data.github.io/helm-chart/
-```
-helm upgrade esip-dev-pangeo pangeo/pangeo -f jupyter-config.yaml -f secret-config.yaml --version=v0.1.1-08b10bd
-```
-login to http://pangeo.esipfed.org, stop the server, restart, then update the `custom-worker-template.yaml` to point to the correct docker image for the Dask workers, making sure not too exceed the CPU and memory of the kubernetes nodes.
+
 
 ### Scale cluster via AWS console:
 
@@ -53,8 +48,8 @@ https://us-west-2.console.aws.amazon.com/ec2/autoscaling/home?region=us-west-2#A
  kubectl get pods -n esip-dev | grep "^dask-rsignell" | cut -d' ' -f1 | xargs kubectl delete pods -n esip-dev
 ```
 
-### Restart cluster
-To restart the cluster, you need to have access to the `secret-config.yaml` file, which looks something like this:
+### Restart existing JupyterHub cluster
+To restart or upgrade the cluster, you need to have access to the `secret-config.yaml` file, which looks something like this:
 ```
 (IOOS3) rsignell@gamone:~/github/pangeo/aws> more secret-config.yaml
 jupyterhub:
@@ -87,3 +82,10 @@ and issue this command using the correct chart version:
 ```
 helm upgrade --force --recreate-pods jupyter pangeo/pangeo --version=0.1.1-85dc5c9 -f secret-config.yaml  -f jupyter-config.yaml
 ```
+
+### Upgrade JuptyerHub
+check for recent Helm chart versions at https://pangeo-data.github.io/helm-chart/
+```
+helm upgrade esip-dev-pangeo pangeo/pangeo -f jupyter-config.yaml -f secret-config.yaml --version=v0.1.1-08b10bd
+```
+login to http://pangeo.esipfed.org, stop the server, restart, then update the `custom-worker-template.yaml` to point to the correct docker image for the Dask workers, making sure not too exceed the CPU and memory of the kubernetes nodes.
