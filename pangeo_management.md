@@ -52,3 +52,38 @@ https://us-west-2.console.aws.amazon.com/ec2/autoscaling/home?region=us-west-2#A
 ```
  kubectl get pods -n esip-dev | grep "^dask-rsignell" | cut -d' ' -f1 | xargs kubectl delete pods -n esip-dev
 ```
+
+### Restart cluster
+To restart the cluster, you need to have access to the `secret-config.yaml` file, which looks something like this:
+```
+(IOOS3) rsignell@gamone:~/github/pangeo/aws> more secret-config.yaml
+jupyterhub:
+  auth:
+    github:
+      clientId: "a782cc170bc304xxxxxxxxxxxxxxxxxxa21"
+      clientSecret: "210de41ac44gabxxxxxxxxx4fas5"
+
+  proxy:
+    secretToken: 3441bc19cdc1xxxxxxxxxxxxxxxxxxxxxxxxx33e265be5d4aed6221
+```
+If you have this file, you can then do:
+```
+helm list 
+``` 
+to see what helm chart version `esip-dev-pangeo` is using:
+```
+$helm list
+
+NAME            REVISION        UPDATED                         STATUS          CHART                   NAMESPACE
+esip-dev-pangeo 46              Mon Jul  9 10:47:35 2018        DEPLOYED        pangeo-v0.1.1-85dc5c9   esip-dev
+hdflab          98              Fri Jul  6 20:01:52 2018        DEPLOYED        jupyterhub-v0.6         hdflab
+(IOOS3) rsignell@gamone:~/github/pangeo/aws>
+```
+then get this config:
+```
+wget https://raw.githubusercontent.com/rsignell-usgs/pangeo/rsignell-aws/aws/jupyter-config.yaml
+```
+and issue this command using the correct chart version:
+```
+helm upgrade --force --recreate-pods jupyter pangeo/pangeo --version=0.1.1-85dc5c9 -f secret-config.yaml  -f jupyter-config.yaml
+```
