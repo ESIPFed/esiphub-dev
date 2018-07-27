@@ -86,6 +86,6 @@ helm upgrade --force --recreate-pods esip-dev-pangeo pangeo/pangeo --version=0.1
 ### Upgrade JuptyerHub
 check for recent Helm chart versions at https://pangeo-data.github.io/helm-chart/
 ```
-helm upgrade esip-dev-pangeo pangeo/pangeo -f jupyter-config.yaml -f secret-config.yaml --version=v0.1.1-08b10bd
+helm upgrade esip-dev-pangeo pangeo/pangeo -f jupyter-config.yaml -f secret-config.yaml --version=v0.1.1-ce2f7f5
 ```
 login to http://pangeo.esipfed.org, stop the server, restart, then update the `custom-worker-template.yaml` to point to the correct docker image for the Dask workers, making sure not too exceed the CPU and memory of the kubernetes nodes.
