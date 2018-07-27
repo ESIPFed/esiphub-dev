@@ -80,7 +80,7 @@ wget https://raw.githubusercontent.com/rsignell-usgs/pangeo/rsignell-aws/aws/jup
 ```
 and issue this command using the correct chart version:
 ```
-helm upgrade --force --recreate-pods esip-dev-pangeo pangeo/pangeo --version=0.1.1-85dc5c9 -f secret-config.yaml  -f jupyter-config.yaml
+helm upgrade --force --recreate-pods esip-dev-pangeo pangeo/pangeo --version=0.1.1-ce2f7f5 -f secret-config.yaml  -f jupyter-config.yaml
 ```
 
 ### Upgrade JuptyerHub
