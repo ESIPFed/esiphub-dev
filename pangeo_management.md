@@ -24,8 +24,7 @@ cp -r cge aws
 cd aws
 cd worker
 vi Dockerfile    # add s3fs
-docker build -t pangeo-worker .
-docker tag pangeo-worker esip/pangeo-worker:2018-05-09
+docker build -t esip/pangeo-worker:2019-09-05 .
 docker push esip/pangeo-worker:2018-05-09
 cd ../../aws/notebook
 docker build --no-cache -t esip/pangeo-notebook:2018-09-05 .
