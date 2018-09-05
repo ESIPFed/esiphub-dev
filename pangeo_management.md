@@ -28,9 +28,8 @@ docker build -t pangeo-worker .
 docker tag pangeo-worker esip/pangeo-worker:2018-05-09
 docker push esip/pangeo-worker:2018-05-09
 cd ../../aws/notebook
-docker build -t pangeo-notebook .
-docker tag pangeo-notebook esip/pangeo-notebook:2018-05-09
-docker push esip/pangeo-notebook:2018-05-09
+docker build --no-cache -t esip/pangeo-notebook:2018-09-05 .
+docker push esip/pangeo-notebook:2018-09-05
 cd ../../aws
 vi jupyter-config.yaml    # adjust whitelist, specify containers from esip
 ```
