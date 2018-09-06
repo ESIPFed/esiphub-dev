@@ -22,12 +22,9 @@ cd pangeo
 git checkout -b rsignell-aws
 cp -r cge aws     
 cd aws
-cd worker
-vi Dockerfile    # add s3fs
-docker build --no-cache -t esip/pangeo-worker:2019-09-05 .
-docker push esip/pangeo-worker:2018-05-09
+cd not
 cd ../../aws/notebook
-docker build --no-cache -t esip/pangeo-notebook:2018-09-05 .
+docker build --no-cache -t esip/pangeo-notebook:2018-09-05 . >& docker.log &
 docker push esip/pangeo-notebook:2018-09-05
 cd ../../aws
 vi jupyter-config.yaml    # adjust whitelist, specify containers from esip
