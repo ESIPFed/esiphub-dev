@@ -60,7 +60,7 @@ If you have this file, you can then do:
 ```
 helm list 
 ``` 
-to see what helm chart version `esip-dev-pangeo` is using:
+to see what helm chart version `esip-pangeo` is using:
 ```
 $helm list
 
@@ -75,12 +75,12 @@ wget https://raw.githubusercontent.com/rsignell-usgs/pangeo/rsignell-aws/aws/jup
 ```
 and issue this command using the correct chart version:
 ```
-helm upgrade --force --recreate-pods esip-dev-pangeo pangeo/pangeo --version=0.1.1-ce2f7f5  -f jupyter-config.yaml -f secret-config.yaml 
+helm upgrade --force --recreate-pods esip-pangeo pangeo/pangeo --version=0.1.1-ce2f7f5  -f jupyter-config.yaml -f secret-config.yaml 
 ```
 
 ### Upgrade JuptyerHub
 check for recent Helm chart versions at https://pangeo-data.github.io/helm-chart/
 ```
-helm upgrade esip-dev-pangeo pangeo/pangeo --version=v0.1.1-ce2f7f5 -f jupyter-config.yaml -f secret-config.yaml 
+helm upgrade esip-pangeo pangeo/pangeo --version=v0.1.1-ce2f7f5 -f jupyter-config.yaml -f secret-config.yaml 
 ```
 login to http://pangeo.esipfed.org, stop the server, restart, then update the `custom-worker-template.yaml` to point to the correct docker image for the Dask workers, making sure not too exceed the CPU and memory of the kubernetes nodes.
